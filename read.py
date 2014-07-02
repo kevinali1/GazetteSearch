@@ -70,7 +70,11 @@ keywords = ['liquidiation',
 
 
 
+total_num_snippets = 0
 for filename in filenames:
+    input_filename_no_extension = filename[4:-4]
+    
+    
     textfile = open(filename, "r")
     textdata = textfile.read()
     print filename
@@ -89,15 +93,24 @@ for filename in filenames:
             searchposition = keyword_startpoint  + 1
             keyword_startpoint = textdata.lower().find(keyword, searchposition)
             num_hits += 1
+            
             print color_string_green("END SNIPPET")
             print "\n\n\n\n\n\n\n\n\n\n\n"
     
     print "    " + "Number of hits: " + str(num_hits)
+    total_num_snippets += num_hits
     
+    if num_hits > 0:
+        command = 'cp temp/' + input_filename_no_extension+".pdf" + ' temp/hits/' + input_filename_no_extension+".pdf"
+        print command
+        os.system(command)
         
     #print str(filename) + "    " + str(len(textdata))
     textfile.close
 
+
+
+print "Total Num Snippets: " + str(total_num_snippets)
 
 
 
