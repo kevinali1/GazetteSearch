@@ -10,6 +10,9 @@ for filename in filenames:
     input_filename = "'" + str(filename) +"'"
     input_filename_no_extension = filename[4:-4]
     
+    # Convert file to txt
+    output_filename =  "out/" + slugify(unicode(input_filename_no_extension)) + ".txt"
+    os.system("pdftotext " + input_filename + " " + output_filename)
     
     # Convert file to slugified filename
     new_input_name = 'temp/' + slugify(unicode(input_filename_no_extension)) + ".pdf"
@@ -17,6 +20,4 @@ for filename in filenames:
     #print command
     os.system(command)
     
-    # Convert file to txt
-    output_filename =  "out/" + slugify(unicode(input_filename_no_extension)) + ".txt"
-    os.system("pdftotext " + input_filename + " " + output_filename)
+
